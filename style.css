@@ -1,0 +1,224 @@
+
+/* ---------------------------------------------------------
+   Dashboard CSS (inspired by InsightBig crypto dashboard)
+   --------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap');
+
+:root{
+  --bg: #131722;
+  --bg2:#0c0e15;
+  --card:#0c0e15;
+  --text:#f6f6f6;
+  --muted:#b2b5be;
+  --border: rgba(255,255,255,0.08);
+  --shadow: -6px 8px 20px 1px rgba(0,0,0,0.32);
+  --accent:#2962ff;
+}
+
+html, body, [class*="st-"]  {
+  font-family: "Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
+}
+
+/* Main container padding */
+section[data-testid="stMain"] > div[data-testid="stMainBlockContainer"]{
+  padding-top: 22px;
+  padding-bottom: 40px;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Spacing */
+div[data-testid="stVerticalBlock"]{
+  gap: 0.8rem;
+}
+
+.divider{
+  height: 14px;
+}
+
+/* ---------------- Cards ---------------- */
+.card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 16px 14px 16px;
+  box-shadow: var(--shadow);
+}
+
+.price-card{
+  padding: 14px 14px 12px 14px;
+}
+
+/* ---------------- Typography ---------------- */
+.dashboard_title{
+  font-size: 85px;
+  font-weight: 700;
+  line-height: 0.95;
+  margin: 0;
+  padding: 0 0 6px 0;
+  color: var(--text);
+}
+
+.dashboard_subtitle{
+  margin: 0;
+  padding: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.section_title{
+  margin: 0 0 10px 0;
+  padding: 0;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: var(--text);
+  font-size: 18px;
+}
+
+.section_subtitle{
+  margin: -6px 0 12px 0;
+  padding: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Price card text */
+.pair_text{
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+.pair_code{
+  color: rgba(178,181,190,0.7);
+  font-weight: 600;
+  font-size: 12px;
+}
+.price_details{
+  margin: 6px 0 0 0;
+  color: var(--text);
+  font-size: 22px;
+  font-weight: 700;
+}
+.price_delta{
+  margin: 4px 0 0 0;
+  color: rgba(178,181,190,0.9);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ---------------- Form styling ---------------- */
+[data-testid="stForm"]{
+  position: relative;
+  border-radius: 10px;
+  background: transparent;
+}
+
+/* Inputs */
+[data-testid="stSelectbox"] div, [data-testid="stNumberInput"] div{
+  background: rgba(255,255,255,0.03) !important;
+  border-radius: 10px !important;
+}
+[data-testid="stSelectbox"] input, [data-testid="stNumberInput"] input{
+  color: var(--text) !important;
+}
+
+/* Labels */
+label{
+  color: var(--muted) !important;
+  font-weight: 600 !important;
+}
+
+/* Buttons */
+[data-testid="stFormSubmitButton"] button,
+[data-testid="stButton"] button{
+  width: 100%;
+  border-radius: 12px !important;
+  border: 1px solid rgba(41,98,255,0.55) !important;
+  background: rgba(41,98,255,0.15) !important;
+  color: var(--text) !important;
+  font-weight: 700 !important;
+  padding: 0.6rem 0.9rem !important;
+}
+[data-testid="stFormSubmitButton"] button:hover,
+[data-testid="stButton"] button:hover{
+  background: rgba(41,98,255,0.25) !important;
+}
+
+/* ---------------- Metric styling ---------------- */
+div[data-testid="stMetric"]{
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  padding: 14px 14px 10px 14px;
+  border-radius: 12px;
+  box-shadow: none;
+  margin-bottom: 10px;
+}
+div[data-testid="stMetric"] label{
+  color: var(--muted) !important;
+}
+div[data-testid="stMetricValue"]{
+  color: var(--text) !important;
+}
+
+/* ---------------- Dataframe styling ---------------- */
+[data-testid="stDataFrame"]{
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+/* Expander */
+[data-testid="stExpander"]{
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+/* Footer note */
+.footer_note{
+  color: rgba(178,181,190,0.75);
+  font-size: 12px;
+  margin-top: 18px;
+}
+/* =========================
+   Watchlist board (fix)
+   - Do NOT rely on card_open()/card_close() inside st.columns
+   ========================= */
+.watch_board{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.watch_card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 14px 12px 14px;
+  box-shadow: var(--shadow);
+  min-height: 110px;
+}
+
+/* Force title size (Streamlit markdown wrappers can override plain .dashboard_title) */
+div[data-testid="stMarkdownContainer"] .dashboard_title{
+  font-size: 85px !important;
+  font-weight: 700 !important;
+  line-height: 0.95 !important;
+  margin: 0 !important;
+  padding: 0 0 6px 0 !important;
+  color: var(--text) !important;
+}
+
+/* Responsive */
+@media (max-width: 1100px){
+  .watch_board{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  div[data-testid="stMarkdownContainer"] .dashboard_title{ font-size: 52px !important; }
+}
+@media (max-width: 650px){
+  .watch_board{ grid-template-columns: 1fr; }
+  div[data-testid="stMarkdownContainer"] .dashboard_title{ font-size: 40px !important; }
+}
